@@ -15,7 +15,7 @@ Bu kütüphane, **Needleman-Wunsch** algoritmasını ve onun **k boyuta genelle�
 ## Kurulum
 
 ```bash
-git clone https://github.com/<miraykahveci>/miraymsa.git
+git clone https://github.com/miraykahveci/miraymsa.git
 cd miraymsa
 pip install numpy
 ```
