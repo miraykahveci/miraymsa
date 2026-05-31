@@ -2,7 +2,7 @@
 
 Dinamik programlama ile çoklu dizi hizalama (Multiple Sequence Alignment) kütüphanesi.
 
-Bu kütüphane, **Needleman-Wunsch** algoritmasını ve onun **k boyuta genelleştirilmiş halini** kullanarak dizileri global olarak hizalar. Sum-of-Pairs (SP) skorlaması ile **optimal hizalamayı garanti eder** — Clustal Omega, MUSCLE veya MAFFT gibi heuristic yöntemlerin aksine yaklaşık değil, kesin sonuç verir.
+Bu kütüphane, **Needleman-Wunsch** algoritmasını ve onun **k boyuta genelleştirilmiş halini** kullanarak dizileri global olarak hizalar. Sum-of-Pairs (SP) skorlaması ile **optimal hizalamayı matematiksel olarak garanti eder**.
 
 ## Özellikler
 
@@ -84,7 +84,7 @@ k dizi için her hücrede `2^k - 1` yön ihtimali değerlendirilir. Sütun skoru
 | 2 dizi NW | O(n·m) | O(n·m) |
 | k dizi DP MSA | O(n^k · 2^k) | O(n^k) |
 
-Saf DP MSA, küçük k değerleri için pratiktir. Bu doğal karmaşıklık sınırı, Clustal Omega, MUSCLE ve MAFFT gibi heuristic yöntemlerin geliştirilmesinin temel sebebidir.
+Saf dinamik programlama yaklaşımı, küçük k değerleri için pratik bir çözüm sunar; büyük k değerleri için ise karmaşıklık doğal olarak artar.
 
 
 ## Testler
