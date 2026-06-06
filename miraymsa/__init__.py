@@ -22,7 +22,7 @@ from .dp_align import needleman_wunsch
 from .msa import msa_align, sum_of_pairs
 from .scoring import simple_score
 
-__version__ = "0.1.0"
+__version__ = "0.1.2"
 __author__ = "Müzeyyen Miray Kahveci"
 __all__ = [
     "needleman_wunsch",
