@@ -8,10 +8,8 @@ Karmaşıklık: O(n^k * 2^k) zaman, O(n^k) bellek
 n: dizi uzunluğu, k: dizi sayısı
 """
 
-import numpy as np
 from itertools import product
 from .scoring import simple_score
-
 
 def sum_of_pairs(karakterler, match=1, mismatch=-1, gap=-2):
     toplam = 0
@@ -24,21 +22,22 @@ def sum_of_pairs(karakterler, match=1, mismatch=-1, gap=-2):
 
 
 def msa_align(diziler, match=1, mismatch=-1, gap=-2):
-  
     k = len(diziler)
     if k < 2:
         raise ValueError("En az 2 dizi gerekli")
 
     boyutlar = tuple(len(d) + 1 for d in diziler)
 
-    F = np.zeros(boyutlar, dtype=int)
-    P = np.full(boyutlar, -1, dtype=int)
+    F = {}   
+    P = {}   
 
     hareketler = [h for h in product([0, 1], repeat=k) if any(h)]
 
+    tum_hucreler = product(*[range(b) for b in boyutlar])
 
-    for hucre in np.ndindex(boyutlar):
+    for hucre in tum_hucreler:
         if all(x == 0 for x in hucre):
+            F[hucre] = 0
             continue
 
         en_iyi_skor = None
@@ -49,13 +48,12 @@ def msa_align(diziler, match=1, mismatch=-1, gap=-2):
 
             if any(x < 0 for x in onceki):
                 continue
-            
+
             sutun = []
             for i in range(k):
                 if hareket[i] == 1:
                     sutun.append(diziler[i][hucre[i] - 1])
                 else:
-                    
                     sutun.append('-')
 
             yeni_skor = F[onceki] + sum_of_pairs(sutun, match, mismatch, gap)
@@ -86,4 +84,4 @@ def msa_align(diziler, match=1, mismatch=-1, gap=-2):
     hizalananlar = [''.join(reversed(h)) for h in hizalananlar]
 
     son_hucre = tuple(len(d) for d in diziler)
-    return hizalananlar, int(F[son_hucre])
+    return hizalananlar, F[son_hucre]
